@@ -16,7 +16,8 @@ The GatePass dApp is a blockchain-based application deployed on the Stellar Bloc
 ---
 
 - I'm a final year, Computer Science and Engineering undergrad, pursuing my B.Tech. from IIIT Naya Raipur, Chhattisgarh, India. 
-- Web3/Blockchain-AI Enthusiast
+- Web3/Blockchain-AI Enthusiast.
+- Some of my web3 project are [Citizen-Centric FIR system Prototype using blockchain]("https://github.com/Bhupendrachouhan19/Citizen-centric-FIR-system-Prototype-using-blockchain") and [Tax-Invoice Automation]("https://github.com/Bhupendrachouhan19/tax_invoice_automation").
 - I'm a self-starter eager to learn new technologies and I am comfortable with HTML, CSS, JavaScript, Python, SQL, C++, EVM, Solidity, RUST, React.JS, Next.JS, NodeJs, MongoDB, Bootstrap, Git, GitHub, AWS (EC2 Instance, S3 Bucket), Windows, Linux, OOPs, Computer Networks, Cryptography, Adobe Photoshop, Figma, Canva.
 
 ## Vision 
