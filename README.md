@@ -35,10 +35,11 @@ The deployment of the smart contract is managed by a User Type-2, ensuring a sin
 
 ## The Tech and Tools used:
 ---
-- Rust Programming Language & Web3
-- Crypto Wallet(Freighter)
-- Sorobon-SDK
-- Stellar Testnet and Stellar B
+- [Rust]("https://doc.rust-lang.org/book/") Programming Language & Web3
+- Crypto Wallet([Freighter]("https://www.freighter.app/"))
+- [Sorobon-SDK]("https://developers.stellar.org/docs/tools/sdks/library")
+- Stellar Testnet and Stellar Blockchain
+- [Stellar Block Explorer]("https://stellarscan.io/") for tracking transactions
 - [Okashi.dev](https://okashi.dev) (for writting and testing the smart contract)
 
 ## Software Development Plan for GatePass dApp on Stellar Blockchain
