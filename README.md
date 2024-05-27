@@ -4,6 +4,8 @@ The GatePass dApp is a blockchain-based application deployed on the Stellar Bloc
 
 # Project Visuals
 ---
+![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/8f69bc51-81a0-4090-a779-3c39257097cc)
+
 
 ## About Us
 ---
