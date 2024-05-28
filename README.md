@@ -147,12 +147,12 @@ soroban network add \
 ```cargo install --locked soroban-cli --features opt```
 
 - Build an Opmiz:
-```soroban contract optimize --wasm target/wasm32-unknown-unknown/release/hello_world.wasm```
+```soroban contract optimize --wasm target/wasm32-unknown-unknown/release/gate_pass_dapp.wasm```
 
 - Deploy contact:
 ```
 soroban contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/hello_world.wasm \
+  --wasm target/wasm32-unknown-unknown/release/gate_pass_dapp.wasm \
   --source alice \
   --network testnet
 ```
