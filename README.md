@@ -34,8 +34,10 @@ The CratePass dApp is a blockchain-based application deployed on the Stellar Blo
 ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/c13816fa-990e-435d-b94b-06a6119f5055)
 
 11. Regular User: Check the updated approval status of their pass.
-12. Regular User: Expire their pass.
-13. Regular User: Checks the updated expired-status of their pass. 
+![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/c0ed83d9-50b8-4987-87a4-82c75d18db3b)
+
+13. Regular User: Expire their pass.
+14. Regular User: Checks the updated expired-status of their pass. 
 
 ---
 ## About Me
