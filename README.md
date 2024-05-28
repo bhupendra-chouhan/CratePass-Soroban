@@ -18,7 +18,7 @@ The CratePass dApp is a blockchain-based application deployed on the Stellar Blo
 
 - I'm a final year undergrad, pursuing my Bachelor of Technology(B.Tech) degree from 'Computer Science & Engineering' branch at IIIT Naya Raipur, Chhattisgarh, India. 
 - A Web Developer, Web3.0/Blockchain-AI enthusiast who like doing graphic designing.
-- Some of my Web3 project are '[Citizen-Centric FIR system Prototype using blockchain](https://bit.ly/4bU7OLZ)' and '[Tax-Invoice Automation](https://github.com/Bhupendrachouhan19/tax_invoice_automation)'.
+- Some of my Web3 project are [Citizen-Centric FIR system Prototype using blockchain](https://github.com/Bhupendrachouhan19/Citizen-centric-FIR-system-Prototype-using-blockchain) and [Tax-Invoice Automation](https://github.com/Bhupendrachouhan19/tax_invoice_automation).
 - Skills:
   - Language/Frameworks: HTML, CSS, JavaScript, SQL, Solidity, React.JS, Next.JS, NodeJs, MongoDB, TailwindCSS
   - Tools: Git, GitHub, Adobe Photoshop, Figma, Canva
