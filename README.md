@@ -61,9 +61,9 @@ Our vision is to revolutionize access management through the CratePass dApp on t
 The CratePass dApp on the Stellar Blockchain facilitates secure and efficient management of gate passes. The application serves two user types:
 
 - User Type-1 (Regular Users): Can register for a gate pass, check its status, and expire their pass once used.
-- User Type-2 (Admin): Holds administrative privileges to approve or reject gate passes registered by User Type-1.
+- User Type-2 (Admin): Holds administrative privileges to approve or reject gate passes registered by Regular Users.
 
-The deployment of the smart contract is managed by a User Type-2, ensuring a single, authorized control point. Regular users do not have the ability to approve or modify passes beyond their own, maintaining strict access control. This structure ensures that only authorized personnel can validate gate passes, enhancing security and reliability within the platform.
+The deployment of the smart contract is managed by the Admin user, ensuring a single, authorized control point. Regular users do not have the ability to approve or modify passes beyond their own, maintaining strict access control. This structure ensures that only authorized personnel can validate gate passes, enhancing security and reliability within the platform.
 
 ---
 ## Road Maps/Future Plans
@@ -85,7 +85,7 @@ The deployment of the smart contract is managed by a User Type-2, ensuring a sin
 
 1. **Define Smart Contract Functions and Variables**
    - Develop the smart contract to include key functions:
-     - `create_pass(env: Env, user: Symbol, title: Symbol, descrip: Symbol)`: Allows User Type-1 to register a gate pass.
+     - `create_pass(env: Env, user: Symbol, title: Symbol, descrip: Symbol)`: Allows Regular Users to register a gate pass.
      - `view_my_pass(env: Env, record_id: u64)`: Enables users to check the status of their pass.
      - `expire_pass (env: Env, record_id: u64)`: Allows users to expire their gate pass.
      - `approve_pass (env: Env, record_id: u64)`: Grants the admin the ability to approve a registered pass.
@@ -94,10 +94,10 @@ The deployment of the smart contract is managed by a User Type-2, ensuring a sin
      - `struct Pass`: Stores user and their pass details like:
             name,record_id or pass_id,title,description,approval_status,out_time,in_time,expiry_status.
      - `enum Passbook`: Maps pass_id to it's gate passes.
-     - `address admin`: Stores the address of the admin (User Type-2).
+     - `address admin`: Stores the address of the Admin).
 
 2. **Implement Access Control**
-   - Ensure only User Type-2 (admin) can approve gate passes.
+   - Ensure only Admin can approve gate passes.
 
 3. **Develop Smart Contract Logic**
    - Code the smart contract functions:
