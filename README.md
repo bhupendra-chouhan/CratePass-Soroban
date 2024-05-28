@@ -131,7 +131,7 @@ soroban network add \
 ├── Cargo.toml
 ├── README.md
 └── contracts
-    └── Gate-Pass-Dapp
+    └── gate-pass-dapp
         ├── Cargo.toml
         └── src
             └── lib.rs
