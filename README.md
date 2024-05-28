@@ -11,8 +11,6 @@ The CratePass dApp is a blockchain-based application deployed on the Stellar Blo
 
 ---
 # Project Visuals (Life Cycle of a Pass)
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/d0246ce8-5132-42ad-a5e9-f071118320f7)
-
 1. Regular User: Creates a new pass.
 ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/40abef76-6f9f-4966-be6a-7ec45bed2a9d)
 ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/2f1b3954-b16f-4e82-8370-db6c7517e5a1)
@@ -22,27 +20,30 @@ The CratePass dApp is a blockchain-based application deployed on the Stellar Blo
 ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/be36234c-d1fe-4bb5-9c6e-1c849a59adda)
 
 
-5. Admin: Checks the count of pending, approved and total passes. One pass is in pending, zero pass approved and total passes are 1.
+4. Admin: Checks the count of pending, approved and total passes. One pass is in pending and zero pass approved.
 ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/e286c362-2103-49df-9da6-c24b64600859)
 
-7. Admin: Approves the pass of Regular User.
+5. Admin: Approves the pass of Regular User.
 ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/49195385-6db1-4149-8f84-1739387e48e4)
 ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/da369b6b-90cf-46b1-a67e-3689fcc67564)
 
-
-9. Admin: Again Checks updated count of pending, approved passes.
+6. Admin: Again Checks updated count of pending, approved passes. Now zero pass is pending and one pass is approved.
 ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/c13816fa-990e-435d-b94b-06a6119f5055)
 
-11. Regular User: Check the updated approval status of their pass.
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/c0ed83d9-50b8-4987-87a4-82c75d18db3b)
+7. Regular User: Check the updated approval status of their pass.
+![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/f422e303-2720-40bf-9cd5-e3570c1a99c3)
 
-13. Regular User: Expire their pass.
-14. Regular User: Checks the updated expired-status of their pass. 
+8. Regular User: Finally expire their pass.
+![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/4d61b179-4551-498b-a67f-9d44c515dde4)
+![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/7ea536d5-7abb-4c0f-ae27-eea3c90e46e1)
+
+9. Regular User: Checks the updated expired-status of their pass.
+![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/751fc7d8-a9f1-4c5d-b2e5-75860b44d1f6)
 
 ---
 ## About Me
 
-- I'm a final year undergrad, pursuing my Bachelor of Technology(B.Tech) degree from 'Computer Science & Engineering' branch at IIIT Naya Raipur, Chhattisgarh, India. 
+- I'm a final year undergrad, pursuing my Bachelor of Technology(B.Tech) degree from 'Computer Science & Engineering' branch at International Institute of Information Technology (IIIT), Naya Raipur, Chhattisgarh, India. 
 - A Web Developer, Web3.0/Blockchain-AI enthusiast who like doing graphic designing.
 - Some of my Web3 project are [Citizen-Centric FIR system Prototype using blockchain](https://github.com/Bhupendrachouhan19/Citizen-centric-FIR-system-Prototype-using-blockchain) and [Tax-Invoice Automation](https://github.com/Bhupendrachouhan19/tax_invoice_automation).
 - Skills:
