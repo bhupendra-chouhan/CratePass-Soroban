@@ -1,3 +1,4 @@
+#![allow(non_snake_case)]
 #![no_std]
 use soroban_sdk::{contract, contracttype, contractimpl, log, Env, Symbol, String, symbol_short};
 
@@ -111,7 +112,6 @@ impl GatePassContract {
 
     // This function gets triggered when the user wants to expire their pass:
     pub fn expire_pass (env: Env, record_id: u64) {
-        let key = Passbook::Pass(record_id); 
         let mut records = Self::view_my_pass(env.clone(), record_id.clone());   
 
         // Checking the Pass is whether approved or not:

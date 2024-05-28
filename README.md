@@ -117,8 +117,8 @@ The deployment of the smart contract is managed by the Admin user, ensuring a si
    - Deploy the smart contract on the Stellar testnet.
 
 ---
-## Smart Contract Address
-xxxxxxxxxxxxxxxxxxx
+## Deployed Smart Contract Address
+```CB7NVZ55M2DZ2S6C5TCL37CMJZITE6JAMROC5AN7PPGTPR46QJ3Q52K5```
 
 ---
 ## Set Up Environment / Project Installation Guide
@@ -169,23 +169,49 @@ soroban network add \
 ```
 
 - Build the contract:
-```soroban contract build```
+```
+soroban contract build
+```
 
 - Alternte command:
-```cargo build --target wasm32-unknown-unknown --release```
+```
+cargo build --target wasm32-unknown-unknown --release
+```
 
 - Install Opmizer:
-```cargo install --locked soroban-cli --features opt```
+```
+cargo install --locked soroban-cli --features opt
+```
 
-- Build an Opmiz:
-```soroban contract optimize --wasm target/wasm32-unknown-unknown/release/gate_pass_dapp.wasm```
+- Build an Opmize the contract:
+```
+soroban contract optimize --wasm target/wasm32-unknown-unknown/release/Gate_Pass_Dapp.wasm
+```
+### Steps to the Deploy contact on testnet:
 
-- Deploy contact:
+- Get the hash of the Wasm bytes, like "fc2d5fa7e75cda65578496eaf1812d57aaaf49e161dcb4a58da219726aadfd5e" using this command:
+```
+soroban contract install --source-account bhupendra --wasm target/wasm32-unknown-unknown/release/Gate_Pass_Dapp.wasm --rpc-url https://soroban-testnet.stellar.org:443 --network-passphrase "Test SDF Network ; September 2015"
+```
+- By using that Wasm hash, deploy the smartcontract on the testnet and get deployed address of the smartcontract using the following command:
 ```
 soroban contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/gate_pass_dapp.wasm \
+  --wasm-hash fc2d5fa7e75cda65578496eaf1812d57aaaf49e161dcb4a58da219726aadfd5e \
   --source alice \
   --network testnet
 ```
 
-**Awesome now you can call functions from smartcontract and interact with the blockchain**
+***Deployed address of this smartcontract:*** ```CB7NVZ55M2DZ2S6C5TCL37CMJZITE6JAMROC5AN7PPGTPR46QJ3Q52K5```
+
+- To invoke any of the function from the smartcontract you can use this command. For example pupose I have invoked the ```view_all_pass_status``` function of the smart contract.
+```
+soroban contract invoke \
+  --id CB7NVZ55M2DZ2S6C5TCL37CMJZITE6JAMROC5AN7PPGTPR46QJ3Q52K5 \
+  --source alice \
+  --network testnet \
+  -- \
+  view_all_pass_status
+```
+
+---
+## **🙂 If you like my work, please give this project a ⭐.**
