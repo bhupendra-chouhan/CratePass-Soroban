@@ -11,35 +11,16 @@ The CratePass dApp is a blockchain-based application deployed on the Stellar Blo
 
 ---
 # Project Visuals (Life Cycle of a Pass)
-1. Regular User: Creates a new pass.
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/40abef76-6f9f-4966-be6a-7ec45bed2a9d)
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/2f1b3954-b16f-4e82-8370-db6c7517e5a1)
-
-3. Regular User: Checks the status of their newly created pass.
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/280950be-900c-450a-b065-80838bca6c24)
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/be36234c-d1fe-4bb5-9c6e-1c849a59adda)
-
-
-4. Admin: Checks the count of pending, approved and total passes. One pass is in pending and zero pass approved.
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/e286c362-2103-49df-9da6-c24b64600859)
-
-5. Admin: Approves the pass of Regular User.
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/49195385-6db1-4149-8f84-1739387e48e4)
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/da369b6b-90cf-46b1-a67e-3689fcc67564)
-
-6. Admin: Again Checks updated count of pending, approved passes. Now zero pass is pending and one pass is approved.
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/c13816fa-990e-435d-b94b-06a6119f5055)
-
-7. Regular User: Check the updated approval status of their pass.
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/f422e303-2720-40bf-9cd5-e3570c1a99c3)
-
-8. Regular User: Finally expire their pass.
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/4d61b179-4551-498b-a67f-9d44c515dde4)
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/7ea536d5-7abb-4c0f-ae27-eea3c90e46e1)
-
-9. Regular User: Checks the updated expired-status of their pass.
-![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/751fc7d8-a9f1-4c5d-b2e5-75860b44d1f6)
-
+1. Interacting with our CratePassContract on Okashi.dev.
+![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/621c17c4-28b7-432f-9e39-4933fa3e6e32)
+2. Creating a new pass.
+![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/8b865619-478d-4308-af07-31f1a9c607073. )
+3. Checking the pass status when it's created v/s after it's expired.
+<div style="display: flex;">
+  <img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/4b010c4f-a72f-44f2-87bc-109276810d0f" style="margin: 0 auto; display: flex;" alt="Ga" width="45%"/> 
+  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
+  <img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/5f6d4f13-86ee-4506-8f0b-d4df615c5b71" style="margin: 0 auto; display: flex;" alt="Ga" width="45%"/></div>
+  
 ---
 ## About Me
 
