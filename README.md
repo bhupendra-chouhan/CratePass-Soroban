@@ -54,7 +54,7 @@ The CratePass dApp is a blockchain-based application deployed on the Stellar Blo
 
 ---
 ## Vision 
-Our vision is to revolutionize access management through the CratePass dApp on the Stellar Blockchain. By leveraging blockchain technology, we aim to provide a secure, transparent, and efficient system for managing gate passes. This project will significantly reduce administrative overhead, prevent unauthorized access, and ensure real-time verification. By streamlining the approval process and enhancing security, we envision widespread adoption across industries, from corporate campuses to gated communities. Our goal is to set a new standard for access control, promoting safety and efficiency for all stakeholders.
+The vision is to revolutionize access management through the CratePass dApp on the Stellar Blockchain. By leveraging blockchain technology, we aim to provide a secure, transparent, and efficient system for managing gate passes. This project will significantly reduce administrative overhead, prevent unauthorized access, and ensure real-time verification. By streamlining the approval process and enhancing security, we envision widespread adoption across industries, from corporate campuses to gated communities. The goal is to set a new standard for access control, promoting safety and efficiency for all stakeholders.
 
 ---
 ## Project Description
@@ -63,13 +63,13 @@ The CratePass dApp on the Stellar Blockchain facilitates secure and efficient ma
 - User Type-1 (Regular Users): Can register for a gate pass, check its status, and expire their pass once used.
 - User Type-2 (Admin): Holds administrative privileges to approve or reject gate passes registered by Regular Users.
 
-The deployment of the smart contract is managed by the Admin user, ensuring a single, authorized control point. Regular users do not have the ability to approve or modify passes beyond their own, maintaining strict access control. This structure ensures that only authorized personnel can validate gate passes, enhancing security and reliability within the platform.
+The deployment of the smart contract is managed by the Admin user, ensuring a single, authorized control point. Regular users neither have the ability to approve nor modify passes their own or other users pass, maintaining strict access control. This structure ensures that only authorized personnel can validate gate passes, enhancing security and reliability within the platform.
 
 ---
 ## Road Maps/Future Plans
 - Building a user-friendly UI.
 - Integerate Frontend with the smartcontract.
-- Implmentation a better authentication. 
+- Updating smart-contract with more new useful functions. 
 
 ---
 ## The Tech and Tools used:
@@ -78,47 +78,45 @@ The deployment of the smart contract is managed by the Admin user, ensuring a si
 - [Sorobon-SDK](https://developers.stellar.org/docs/tools/sdks/library)
 - Stellar Testnet and Stellar Blockchain
 - [Stellar Block Explorer](https://stellarscan.io/) for tracking transactions
-- [Okashi.dev](https://okashi.dev) (for writting and testing the smart contract)
+- [Okashi.dev](https://okashi.dev/playground/azpvnpjplinkfgaksmsddriqrrps) (for writting and testing the smart contract)
 
 ---
 ## Software Development Plan for CratePass dApp on Stellar Blockchain
 
-1. **Define Smart Contract Functions and Variables**
+1. **Smart Contract Functions and Variables**
    - Develop the smart contract to include key functions:
-     - `create_pass(env: Env, user: Symbol, title: Symbol, descrip: Symbol)`: Allows Regular Users to register a gate pass.
-     - `view_my_pass(env: Env, record_id: u64)`: Enables users to check the status of their pass.
-     - `expire_pass (env: Env, record_id: u64)`: Allows users to expire their gate pass.
-     - `approve_pass (env: Env, record_id: u64)`: Grants the admin the ability to approve a registered pass.
-     - `view_all_pass_status (env: Env)`: Allow the admin to view all the pending, approved, and total passes made our the platform. 
+     - `create_pass(env: Env, record_id: Address, title: String, descrip: String)`: Allows regular users to register a gate pass.
+     - `view_my_pass(env: Env, record_id: Address)`: Enables users to check the status of their pass.
+     - `expire_pass (env: Env, record_id: Address)`: Allows users to expire their gate pass.
+     - `approve_pass (env: Env, record_id: Address)`: Grants the admin the ability to approve a registered pass.
+     - `view_my_pass(env: Env, record_id: Address)`: Allow the admin to view all the pending, approved, and total passes made our the platform. 
    - Define essential variables:
-     - `struct Pass`: Stores user and their pass details like:
-            name,record_id or pass_id,title,description,approval_status,out_time,in_time,expiry_status.
-     - `enum Passbook`: Maps pass_id to it's gate passes.
-     - `address admin`: Stores the address of the Admin).
+     - `struct Pass`: Stores user and their pass details like title, description, approval status, out-time, in-time, and expiry status.
+     - `struct ApprovalStatus`: Stores the count of all types of pass statuses like the number of pending, approved, expired, and total passes.
+     - `enum Passbook`: Maps passes to their respective owners' addresses.
 
-2. **Implement Access Control**
-   - Ensure only Admin can approve gate passes.
+2. **Access Control**
+   - Only authorised users can invoke the functions written insdie the smart-contract.
 
-3. **Develop Smart Contract Logic**
-   - Code the smart contract functions:
-     - Ensure `create_pass` updates the mapping with new pass details.
-     - Implement `view_my_pass` to return the status of a user's pass.
-     - Create `expire_pass` to mark a pass as expired.
-     - Code `approve_pass` to change the pass status to approved if called by the admin.
-     - Built `view_all_pass_status` to return the status of all registerd passes.
+3. **Logic behind various functions defined inside the Smart Contract**
+    - Code the smart contract functions:
+      - `create_pass`: Checks if the user is authorized or not. If the user is authorized, ensure the user has no more than one pass assigned to their address. If the user has zero passes assigned to their address, only then are they allowed to create a new pass.
+      - `view_my_pass`: Allows authorized users to check their pass status using their address.
+      - `expire_pass`: Allows authorized users to expire their pass using their address.
+      - `approve_pass`: Checks if the user is an authorized admin or not. If the user is an authorized admin, only then can they approve the pass of other regular users.
+      - `view_all_pass_status`: Allows users to see the count of pending, approved, expired, and total passes registered on the platform.
 
 4. **Front-End Development**
    - Right now Front-end is under development and soon be ready to integerate with smartcontract
 
-5. **Testing and Validation**
-   - Fixed the bug that was causing the create_pass() function to throw a Panic!, which was terminating the function's execution and therefore preventing new pass creation.
-
-6. **Deployment**
-   - Deploy the smart contract on the Stellar testnet.
+5. **Deployment**
+   - Deployed the smart contract on the Stellar testnet.
 
 ---
 ## Deployed Smart Contract Address
-```CB7NVZ55M2DZ2S6C5TCL37CMJZITE6JAMROC5AN7PPGTPR46QJ3Q52K5```
+```CBOHFPCKOQIUPAIY2U44WP25HVMOSJPLWMEPETRCFPJ5XQXCXZ432FWH```
+
+**NOTE: Some functions can only be invoked by authorized users. If you were unable to invoke those functions from your command line, you can always interact with the smart contract using GUIs, by visiting [Okash.dev/CratePass](https://okashi.dev/playground/azpvnpjplinkfgaksmsddriqrrps).**
 
 ---
 ## Set Up Environment / Project Installation Guide
@@ -187,7 +185,7 @@ cargo install --locked soroban-cli --features opt
 ```
 soroban contract optimize --wasm target/wasm32-unknown-unknown/release/Gate_Pass_Dapp.wasm
 ```
-### Steps to the Deploy contact on testnet:
+### Steps to the Deploy smart-contract on testnet:
 
 - Get the hash of the Wasm bytes, like "fc2d5fa7e75cda65578496eaf1812d57aaaf49e161dcb4a58da219726aadfd5e" using this command:
 ```
@@ -203,7 +201,23 @@ soroban contract deploy \
 
 ***Deployed address of this smartcontract:*** ```CCRTRMZ6TQCTR3N34QFH43UXOLN74UB47ALQAWBQ24M5ACXPJVWCD4DE```
 
-- To invoke any of the function from the smartcontract you can use this command. For example pupose I have invoked the ```view_all_pass_status``` function of the smart contract.
+*NOTE: If you get the XDR Error ```error: xdr processing error: xdr value invalid```, then follow this [article](https://stellar.org/blog/developers/protocol-21-upgrade-guide). 
+
+
+### Invoke functions from the smart-contract:
+
+- #### To invoke any of the function from the smartcontract you can use this command fromat. 
+```
+soroban contract invoke \
+  --id <DEPLOYED_CONTRACT_ADDRESS> \
+  --source <YOUR_ACCOUNT_NAME> \
+  --network testnet \
+  -- \
+  <FUNCTION_NAME> --<FUNCTION_PARAMETER> <ARGUMENT>
+```
+
+- #### For example:
+1) To status of all registered passes, invoke ```view_all_pass_status``` function.
 ```
 soroban contract invoke \
   --id CBOHFPCKOQIUPAIY2U44WP25HVMOSJPLWMEPETRCFPJ5XQXCXZ432FWH \
@@ -212,6 +226,17 @@ soroban contract invoke \
   -- \
   view_all_pass_status
 ```
+2) To create a new pass, invoke ```create_pass``` function:
+```
+soroban contract invoke \
+  --id CBOHFPCKOQIUPAIY2U44WP25HVMOSJPLWMEPETRCFPJ5XQXCXZ432FWH \
+  --source alice \
+  --network testnet \
+  -- \
+  create_pass --record_id <YOUR_PUBLIC_ADDRESS> --title "Going Home" --descrip "I am going to my home today."
+```
+
+**NOTE: Some functions can only be invoked by authorized users. If you were unable to invoke those functions from your command line, you can always interact with the smart contract by visiting [Okash.dev/CratePass](https://okashi.dev/playground/azpvnpjplinkfgaksmsddriqrrps).**
 
 ---
 ## **🙂 If you like my work, please give this project a ⭐.**
