@@ -196,17 +196,17 @@ soroban contract install --source-account bhupendra --wasm target/wasm32-unknown
 - By using that Wasm hash, deploy the smartcontract on the testnet and get deployed address of the smartcontract using the following command:
 ```
 soroban contract deploy \
-  --wasm-hash fc2d5fa7e75cda65578496eaf1812d57aaaf49e161dcb4a58da219726aadfd5e \
+  --wasm-hash fa0d56ed19624c19ac0356e6d3139fbf2923dfd4f5fb100e83ca316082324076 \
   --source alice \
   --network testnet
 ```
 
-***Deployed address of this smartcontract:*** ```CB7NVZ55M2DZ2S6C5TCL37CMJZITE6JAMROC5AN7PPGTPR46QJ3Q52K5```
+***Deployed address of this smartcontract:*** ```CCRTRMZ6TQCTR3N34QFH43UXOLN74UB47ALQAWBQ24M5ACXPJVWCD4DE```
 
 - To invoke any of the function from the smartcontract you can use this command. For example pupose I have invoked the ```view_all_pass_status``` function of the smart contract.
 ```
 soroban contract invoke \
-  --id CB7NVZ55M2DZ2S6C5TCL37CMJZITE6JAMROC5AN7PPGTPR46QJ3Q52K5 \
+  --id CBOHFPCKOQIUPAIY2U44WP25HVMOSJPLWMEPETRCFPJ5XQXCXZ432FWH \
   --source alice \
   --network testnet \
   -- \
