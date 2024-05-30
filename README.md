@@ -10,7 +10,7 @@ The CratePass dApp is a blockchain-based application deployed on the Stellar Blo
 #### Crypto + Gate Pass => CratePass
 
 ---
-# Project Visuals (Life Cycle of a Pass)
+# Project Visuals
 1. Interacting with our CratePassContract on Okashi.dev.
 ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/621c17c4-28b7-432f-9e39-4933fa3e6e32)
 2. Creating a new pass.
@@ -20,7 +20,14 @@ The CratePass dApp is a blockchain-based application deployed on the Stellar Blo
   <img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/4b010c4f-a72f-44f2-87bc-109276810d0f" style="margin: 0 auto; display: flex;" alt="Ga" width="45%"/> 
   &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
   <img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/5f6d4f13-86ee-4506-8f0b-d4df615c5b71" style="margin: 0 auto; display: flex;" alt="Ga" width="45%"/></div>
-  
+
+## UI-Screenshots (Smart-contract Integeration is Underdevelopment. Complete Version will be releasing soon..)
+- Regular User View:
+![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/02d6e98b-6038-4c3c-a07f-1a364ec32f3d)
+
+- Admin View:
+![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/e0b5bac5-5d32-4b29-aafb-42e507750ed0)
+
 ---
 ## About Me
 
