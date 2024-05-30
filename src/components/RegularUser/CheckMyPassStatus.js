@@ -1,9 +1,7 @@
 import React from "react";
 
 const CheckMyPassStatus = () => {
-  const handldeRefresh = () => {
-
-  }
+  const handldeRefresh = () => {};
 
   const status = {
     approval: false,
@@ -27,33 +25,37 @@ const CheckMyPassStatus = () => {
       </div>
       <table className="w-full text-center">
         <thead className="border-b-2 border-blue-700">
-          <td>Key</td>
-          <td>Value</td>
+          <tr>
+            <th>Key</th>
+            <th>Value</th>
+          </tr>
         </thead>
-        <tr>
-          <td className="w-[50%]">Titile</td>
-          <td className="w-[50%]">{status.title}</td>
-        </tr>
-        <tr>
-          <td>Description</td>
-          <td>{status.descrip}</td>
-        </tr>
-        <tr>
-          <td>Out Time</td>
-          <td>{status.out_time}</td>
-        </tr>
-        <tr>
-          <td>Is Approval</td>
-          <td>{status.approval ? "Approved" : "Pending.."}</td>
-        </tr>
-        <tr>
-          <td>Is Expired</td>
-          <td>{status.isexpired ? "Expired" : "Active"}</td>
-        </tr>
-        <tr>
-          <td>In Time</td>
-          <td>{status.in_time}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td className="w-[50%]">Titile</td>
+            <td className="w-[50%]">{status.title}</td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td>{status.descrip}</td>
+          </tr>
+          <tr>
+            <td>Out Time</td>
+            <td>{status.out_time}</td>
+          </tr>
+          <tr>
+            <td>Is Approval</td>
+            <td>{status.approval ? "Approved" : "Pending.."}</td>
+          </tr>
+          <tr>
+            <td>Is Expired</td>
+            <td>{status.isexpired ? "Expired" : "Active"}</td>
+          </tr>
+          <tr>
+            <td>In Time</td>
+            <td>{status.in_time}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { checkConnection, retrievePublicKey } from "./Freighter";
+import { fetchAllPassStatus, fetchMyPassStatus } from "./Soroban/Soroban";
 
 const Header = () => {
   const [connect, getConnected] = useState("Connect");
   const [publickey, getPublicKey] = useState("");
   const [total, getTotal] = useState(0);
+
+  useEffect(() => {
+    if (publickey !== "") {
+      console.log("Entereed")
+      getConnected("Connected!");
+      // fetchAllPassStatus(publickey);
+      fetchMyPassStatus(publickey);
+    }
+  }, [publickey])
 
   const connectWallet = async () => {
     if (await checkConnection()) {

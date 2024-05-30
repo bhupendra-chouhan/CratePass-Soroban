@@ -29,8 +29,8 @@ const ApprovePass = () => {
         <table className="flex flex-col gap-3">
           <thead className="border-b-2 border-blue-700">
             <tr className="text-center flex gap-4 justify-between">
-              <td className="text-center">Pending Passes</td>
-              <td className="text-center">Approve</td>
+              <th className="text-center">Pending Passes</th>
+              <th className="text-center">Approve</th>
             </tr>
           </thead>
           <tbody className="flex flex-col gap-3 min-w-full h-52 overflow-scroll">

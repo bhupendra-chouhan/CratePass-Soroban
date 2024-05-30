@@ -30,9 +30,12 @@ const CheckAllPassStatus = () => {
       <div className="text-center flex justify-center">
         <table>
           <thead className="border-b-2 border-dashed border-blue-700">
-            <td>Key</td>
-            <td>Value</td>
+          <tr>
+            <th>Key</th>
+            <th>Value</th>
+          </tr>
           </thead>
+          <tbody>
           <tr>
             <td>Approved</td>
             <td>{allStatus.approved}</td>
@@ -49,6 +52,7 @@ const CheckAllPassStatus = () => {
             <td>Total</td>
             <td>{allStatus.total}</td>
           </tr>
+          </tbody>
         </table>
       </div>
     </div>
