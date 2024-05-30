@@ -8,18 +8,17 @@ import {
   Address,
 } from "@stellar/stellar-sdk";
 import { userSignTransaction } from "../Freighter";
-import { getPublicKey } from "@stellar/freighter-api";
 
 let rpcUrl = "https://soroban-testnet.stellar.org";
 
 let contractAddress =
-  "CBOHFPCKOQIUPAIY2U44WP25HVMOSJPLWMEPETRCFPJ5XQXCXZ432FWH";
+  "CAN7OFLWV4CTRSB6DMVZU2KU2P2PYKIWBLUROFNNOLDFTAQ2KIQBOUHI";
 
 // coverting Account Address to ScVal form
 const accountToScVal = (account) => new Address(account).toScVal();
 
 // coverting String to ScVal form
-const stringToString = (value) => {
+const stringToScValString = (value) => {
   return nativeToScVal(value);
 };
 
@@ -61,6 +60,7 @@ async function contractInt(caller, functName, values) {
 
   try {
     let sendTx = await provider.sendTransaction(tx).catch(function (err) {
+        console.error("Catch-1", err);
       return err;
     });
     if (sendTx.errorResult) {
@@ -80,11 +80,38 @@ async function contractInt(caller, functName, values) {
       }
     }
   } catch (err) {
+    console.log("cAtch-2", err);
     return err;
   }
 }
 
 // function to interact with it's respective smart contract functions:
+
+async function createPass(caller, title, descrip) {
+  let accountScVal = accountToScVal(caller);
+  let titleScVal = stringToScValString(title);
+  let descripScVal = stringToScValString(descrip);
+  let values = [accountScVal, titleScVal, descripScVal];
+
+    await contractInt(caller, "create_pass", values);
+  console.log("!!Pass Created!!");
+}
+
+async function approvePass(caller) {
+  let accountScVal = accountToScVal(caller);
+  let values = accountScVal;
+  
+  await contractInt(caller, "approve_pass", values);
+  console.log("!!Pass Arrpoved!!");
+}
+
+async function expirePass(caller) {
+  let accountScVal = accountToScVal(caller);
+  let values = accountScVal;
+
+  await contractInt(caller, "expire_pass", values);
+  console.log("!!Pass expired!!");
+}
 
 async function fetchAllPassStatus(caller) {
   let accountScVal = accountToScVal(caller);
@@ -130,12 +157,12 @@ async function fetchMyPassStatus(caller) {
   let isexpiredVal = result._value[3]._attributes.val._value;
 
   // Out-time:
-  let out_timeVar = result._value[2]._attributes.key._value.toString();
-  let out_timeVal = Number(result._value[2]._attributes.val._value);
+  let out_timeVar = result._value[4]._attributes.key._value.toString();
+  let out_timeVal = Number(result._value[4]._attributes.val._value);
 
   // Pass Title:
-  let titleVar = result._value[1]._attributes.key._value.toString();
-  let titleVal = result._value[1]._attributes.val._value.toString();
+  let titleVar = result._value[5]._attributes.key._value.toString();
+  let titleVal = result._value[5]._attributes.val._value.toString();
 
   console.log(
     approvalVal,
@@ -147,4 +174,10 @@ async function fetchMyPassStatus(caller) {
   );
 }
 
-export { fetchAllPassStatus, fetchMyPassStatus };
+export {
+  createPass,
+  approvePass,
+  expirePass,
+  fetchAllPassStatus,
+  fetchMyPassStatus,
+};

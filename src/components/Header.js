@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { checkConnection, retrievePublicKey } from "./Freighter";
-import { fetchAllPassStatus, fetchMyPassStatus } from "./Soroban/Soroban";
+import {
+  createPass,
+  approvePass,
+  expirePass,
+  fetchAllPassStatus,
+  fetchMyPassStatus,
+} from "./Soroban/Soroban";
 
-const Header = () => {
+const Header = ({setPubKey}) => {
   const [connect, getConnected] = useState("Connect");
   const [publickey, getPublicKey] = useState("");
-  const [total, getTotal] = useState(0);
+  // const [total, getTotal] = useState(0);
 
   useEffect(() => {
     if (publickey !== "") {
-      console.log("Entereed")
+      console.log("Entereed");
       getConnected("Connected!");
+
       // fetchAllPassStatus(publickey);
-      fetchMyPassStatus(publickey);
+      // fetchMyPassStatus(publickey);
+      // createPass(publickey, "Reaching to Office", "I'm going to my Office today.");
+      // approvePass(publickey);
+      // approvePass('GCABWSGFRPA7IHAC7KZVLM5WWRDZCZVZ3BFVHSMS5C7Y2J3ZUXQC4GQE');
+      // expirePass(publickey);
     }
-  }, [publickey])
+  }, [publickey]);
 
   const connectWallet = async () => {
     if (await checkConnection()) {
-      getConnected("Connected!");
       getPublicKey(await retrievePublicKey());
+      setPubKey(publickey);
     }
   };
 
@@ -32,7 +43,9 @@ const Header = () => {
             Address
           </span>
           <span className="px-2">
-            {`${publickey.substring(0, 4)} ${publickey && "..."} ${publickey.substring(publickey.length - 4)}`}
+            {`${publickey.substring(0, 4)} ${
+              publickey && "..."
+            } ${publickey.substring(publickey.length - 4)}`}
           </span>
         </div>
         <button
