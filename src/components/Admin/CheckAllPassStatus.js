@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 
 const CheckAllPassStatus = () => {
   const allStatus = {
-    approved: 0,
-    expired: 0,
-    pending: 0,
-    total: 0,
+    approved: 2,
+    expired: 1,
+    pending: 4,
+    total: 7,
   };
 
   // useEffect(() => {
