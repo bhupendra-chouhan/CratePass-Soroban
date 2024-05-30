@@ -24,16 +24,20 @@ const CheckAllPassStatus = () => {
             <td>Value</td>
           </thead>
           <tr>
-            <td>Description</td>
+            <td>Approved</td>
             <td>{allStatus.approved}</td>
           </tr>
           <tr>
-            <td>Out Time</td>
+            <td>Expired</td>
             <td>{allStatus.expired}</td>
           </tr>
           <tr>
-            <td>Is Approval</td>
+            <td>Pending</td>
             <td>{allStatus.pending}</td>
+          </tr>
+          <tr>
+            <td>Total</td>
+            <td>{allStatus.total}</td>
           </tr>
         </table>
       </div>
