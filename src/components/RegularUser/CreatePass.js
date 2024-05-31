@@ -1,16 +1,27 @@
-import { pubKeyData } from "App";
-import React, { useContext, useState } from "react";
+import { pubKeyData, dynamicAddresslist } from "App";
+import React, { useContext, useEffect, useState } from "react";
 import { createPass } from "components/Soroban/Soroban";
 
 const CreatePass = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+
   const pubKey = useContext(pubKeyData);
+  const {dynamicAddress, _setDynamicAddress} = useContext(dynamicAddresslist);
 
   const handleCreatePass = () => {
-    createPass(pubKey, title, description);
+    createPass(pubKey, title , description);
+    _setDynamicAddress((dynamicAddress)=>[...dynamicAddress, pubKey]);
+    console.log("CreatePass: ",dynamicAddress);
   };
+
+
+  // Storing list of newly created pass_ids/account addresss to local storage in string format:
+  useEffect(() => {
+    localStorage.setItem("pendingForApprovalList", JSON.stringify(dynamicAddress));
+  }, [dynamicAddress]);
+
 
   return (
     <div className="md: mr-[50px] md:ml-[50px] bg-yellow-300 w-[98%] rounded-lg p-5">

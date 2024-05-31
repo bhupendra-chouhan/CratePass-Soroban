@@ -17,11 +17,12 @@ const Header = ({setPubKey}) => {
       getConnected("Connected!");
       setPubKey(publickey);
       
-      fetchAllPassStatus(publickey);
+      // fetchAllPassStatus(publickey);
       // fetchMyPassStatus(publickey);
       // createPass(publickey, "Reaching to Office", "I'm going to my Office today.");
       // approvePass(publickey);
-      // approvePass('GCABWSGFRPA7IHAC7KZVLM5WWRDZCZVZ3BFVHSMS5C7Y2J3ZUXQC4GQE');
+      // approvePass(publickey, 'GCABWSGFRPA7IHAC7KZVLM5WWRDZCZVZ3BFVHSMS5C7Y2J3ZUXQC4GQE');
+      // console.log(typeof publickey)
       // expirePass(publickey);
     }
   }, [publickey]);

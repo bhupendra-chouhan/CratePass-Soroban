@@ -1,9 +1,14 @@
-import React from "react";
+import { dynamicAddresslist } from "App";
+import React, {useContext} from "react";
 import PendingPass from "./PendingPass";
 
-
 const ApprovePass = () => {
-  const handldeRefresh = () => {};
+  const { dynamicAddress, _setDynamicAddress } = useContext(dynamicAddresslist);
+  console.log("ApprovePass.js: ", dynamicAddress);
+
+  const handleRefresh = () => {
+
+  };
 
   const pendingPasses = [
     "GAODZC5VXXVWEBODQ3PXKK5AFZJXTMUNCVH6DE2F3SSDFSFSXDSGACMO62R66",
@@ -20,7 +25,7 @@ const ApprovePass = () => {
         ApprovePass Check Your Pass Status
         <button
           className="text-lg hover:bg-violet-500 bg-violet-400 rounded-md p-1 font-bold text-white"
-          onClick={handldeRefresh}
+          onClick={handleRefresh}
         >
           Refresh
         </button>

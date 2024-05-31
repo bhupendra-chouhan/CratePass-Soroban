@@ -12,7 +12,7 @@ import { userSignTransaction } from "../Freighter";
 let rpcUrl = "https://soroban-testnet.stellar.org";
 
 let contractAddress =
-  "CAN7OFLWV4CTRSB6DMVZU2KU2P2PYKIWBLUROFNNOLDFTAQ2KIQBOUHI";
+  "CC27C52P3LWXBL3332ROVUPVW5ZY676WVQNCOI5MU45F473SPMFRT24F";
 
 // coverting Account Address to ScVal form
 const accountToScVal = (account) => new Address(account).toScVal();
@@ -80,7 +80,7 @@ async function contractInt(caller, functName, values) {
       }
     }
   } catch (err) {
-    console.log("cAtch-2", err);
+    console.log("Catch-2", err);
     return;
   }
 }
@@ -91,12 +91,13 @@ async function createPass(caller, title, descrip) {
   let titleScVal = stringToScValString(title);
   let descripScVal = stringToScValString(descrip);
   let values = [accountScVal, titleScVal, descripScVal];
-  
+
   try {
-    await contractInt(caller, "create_pass", values);
-    console.log("!!Pass Created!!");
+    const record_id = await contractInt(caller, "create_pass", values);
+    
+    console.log("!!Pass Created!!"); // Big Object
   } catch (error) {
-    console.log("Pass not created. Check if you have a pending pass");
+    console.log("Pass not created. Check if you already have a active pass");
   }
 }
 
@@ -104,67 +105,81 @@ async function approvePass(caller) {
   let accountScVal = accountToScVal(caller);
   let values = accountScVal;
 
-  await contractInt(caller, "approve_pass", values);
-  console.log("!!Pass Arrpoved!!");
+  try {
+    await contractInt(caller, "approve_pass", values);
+    console.log("!!Pass Arrpoved!!");
+  } catch (error) {
+    console.log("Pass can't be approved!!");
+  }
 }
 
 async function expirePass(caller) {
   let accountScVal = accountToScVal(caller);
   let values = accountScVal;
 
-  await contractInt(caller, "expire_pass", values);
-  console.log("!!Pass expired!!");
+  try {
+    await contractInt(caller, "expire_pass", values);
+    console.log("!!Pass expired!!");
+  } catch (error) {
+    console.log("Pass can't be expired!!", error);
+  }
 }
 
 async function fetchAllPassStatus(caller) {
-  let accountScVal = accountToScVal(caller);
-  let result = await contractInt(caller, "view_all_pass_status", null);
+  try {
+    let result = await contractInt(caller, "view_all_pass_status", null);
 
-  // Approval Status:
-  let approvedVar = result._value[0]._attributes.key._value.toString();
-  let approvedVal = Number(result._value[0]._attributes.val._value);
+    // Approval Status:
+    let approvedVal = Number(result._value[0]._attributes.val._value);
 
-  // Expired Status:
-  let expiredVar = result._value[1]._attributes.key._value.toString();
-  let expiredVal = Number(result._value[1]._attributes.val._value);
+    // Expired Status:
+    let expiredVal = Number(result._value[1]._attributes.val._value);
 
-  // Pending Status:
-  let pendingVar = result._value[2]._attributes.key._value.toString();
-  let pendingVal = Number(result._value[2]._attributes.val._value);
+    // Pending Status:
+    let pendingVal = Number(result._value[2]._attributes.val._value);
 
-  // Total Status:
-  let totalVar = result._value[3]._attributes.key._value.toString();
-  let totalVal = Number(result._value[3]._attributes.val._value);
+    // Total Status:
+    let totalVal = Number(result._value[3]._attributes.val._value);
 
-  console.log(approvedVal, expiredVal, pendingVal, totalVal);
+    console.log(approvedVal, expiredVal, pendingVal, totalVal);
+    let ansArr = [];
+    ansArr.push(approvedVal);
+    ansArr.push(expiredVal);
+    ansArr.push(pendingVal);
+    ansArr.push(totalVal);
+    return ansArr;
+  } catch (error) {
+    console.log("Unable to fetch All Pass Status!!");
+  }
 }
 
 async function fetchMyPassStatus(caller) {
-  let accountScVal = accountToScVal(caller);
-  let result = await contractInt(caller, "view_my_pass", accountScVal);
+  let result;
+  let accountScVal;
+
+  try {
+    accountScVal = accountToScVal(caller);
+    result = await contractInt(caller, "view_my_pass", accountScVal);
+  } catch (error) {
+    console.log("Unable to Your Pass Status!!");
+  }
 
   // Approval Status:
-  let approvalVar = result._value[0]._attributes.key._value.toString();
   let approvalVal = result._value[0]._attributes.val._value;
 
   // Pass Description:
-  let descripVar = result._value[1]._attributes.key._value.toString();
   let descripVal = result._value[1]._attributes.val._value.toString();
 
   // In-time:
-  let in_timeVar = result._value[2]._attributes.key._value.toString();
   let in_timeVal = Number(result._value[2]._attributes.val._value);
 
   // Expiry Status:
-  let isexpiredVar = result._value[3]._attributes.key._value.toString();
   let isexpiredVal = result._value[3]._attributes.val._value;
 
   // Out-time:
-  let out_timeVar = result._value[4]._attributes.key._value.toString();
   let out_timeVal = Number(result._value[4]._attributes.val._value);
 
   // Pass Title:
-  let titleVar = result._value[5]._attributes.key._value.toString();
   let titleVal = result._value[5]._attributes.val._value.toString();
 
   console.log(
@@ -175,6 +190,15 @@ async function fetchMyPassStatus(caller) {
     out_timeVal,
     titleVal
   );
+
+  let ansArr = [];
+  ansArr.push(approvalVal);
+  ansArr.push(descripVal);
+  ansArr.push(in_timeVal);
+  ansArr.push(isexpiredVal);
+  ansArr.push(out_timeVal);
+  ansArr.push(titleVal);
+  return ansArr;
 }
 
 export {

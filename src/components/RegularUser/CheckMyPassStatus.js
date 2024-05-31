@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { fetchMyPassStatus } from "components/Soroban/Soroban";
+import { pubKeyData } from "App";
 
 const CheckMyPassStatus = () => {
-  const handldeRefresh = () => {};
+  const [passStatus, setPassStatus] = useState({});
+
+  const pubKey = useContext(pubKeyData);
+
+  const handleRefresh = async () => {
+    await fetchMyPassStatus(pubKey).then((values) => {
+      setPassStatus(values);
+    });
+  };
 
   const status = {
-    approval: false,
-    descrip: "I'm going to my home today",
-    in_time: 1716992786,
-    isexpired: false,
-    out_time: 1716992821,
-    title: "Going Home",
+    title: passStatus[5] || "Not_Found",
+    descrip: passStatus[1] || "Not_Found",
+    out_time: passStatus[4] || 0,
+    in_time: passStatus[2] || 0,
+    approval: passStatus[0] || "Not_Found",
+    isexpired: passStatus[3] || "Not_Found",
   };
 
   return (
@@ -18,7 +28,7 @@ const CheckMyPassStatus = () => {
         Check Your Pass Status
         <button
           className="text-lg hover:bg-violet-500 bg-violet-400 rounded-md p-1 font-bold text-white"
-          onClick={handldeRefresh}
+          onClick={handleRefresh}
         >
           Refresh
         </button>
@@ -45,15 +55,15 @@ const CheckMyPassStatus = () => {
           </tr>
           <tr>
             <td>Is Approval</td>
-            <td>{status.approval ? "Approved" : "Pending.."}</td>
-          </tr>
-          <tr>
-            <td>Is Expired</td>
-            <td>{status.isexpired ? "Expired" : "Active"}</td>
+            <td>{status.approval ? "Not Approved" : "Approved"}</td>
           </tr>
           <tr>
             <td>In Time</td>
             <td>{status.in_time}</td>
+          </tr>
+          <tr>
+            <td>Is Expired</td>
+            <td>{status.isexpired ? "Not Expired" : "Expired"}</td>
           </tr>
         </tbody>
       </table>
