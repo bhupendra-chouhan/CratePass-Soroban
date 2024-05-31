@@ -60,7 +60,7 @@ async function contractInt(caller, functName, values) {
 
   try {
     let sendTx = await provider.sendTransaction(tx).catch(function (err) {
-        console.error("Catch-1", err);
+      console.error("Catch-1", err);
       return err;
     });
     if (sendTx.errorResult) {
@@ -81,26 +81,29 @@ async function contractInt(caller, functName, values) {
     }
   } catch (err) {
     console.log("cAtch-2", err);
-    return err;
+    return;
   }
 }
 
 // function to interact with it's respective smart contract functions:
-
 async function createPass(caller, title, descrip) {
   let accountScVal = accountToScVal(caller);
   let titleScVal = stringToScValString(title);
   let descripScVal = stringToScValString(descrip);
   let values = [accountScVal, titleScVal, descripScVal];
-
+  
+  try {
     await contractInt(caller, "create_pass", values);
-  console.log("!!Pass Created!!");
+    console.log("!!Pass Created!!");
+  } catch (error) {
+    console.log("Pass not created. Check if you have a pending pass");
+  }
 }
 
 async function approvePass(caller) {
   let accountScVal = accountToScVal(caller);
   let values = accountScVal;
-  
+
   await contractInt(caller, "approve_pass", values);
   console.log("!!Pass Arrpoved!!");
 }

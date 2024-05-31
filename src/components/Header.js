@@ -11,14 +11,13 @@ import {
 const Header = ({setPubKey}) => {
   const [connect, getConnected] = useState("Connect");
   const [publickey, getPublicKey] = useState("");
-  // const [total, getTotal] = useState(0);
 
   useEffect(() => {
     if (publickey !== "") {
-      console.log("Entereed");
       getConnected("Connected!");
-
-      // fetchAllPassStatus(publickey);
+      setPubKey(publickey);
+      
+      fetchAllPassStatus(publickey);
       // fetchMyPassStatus(publickey);
       // createPass(publickey, "Reaching to Office", "I'm going to my Office today.");
       // approvePass(publickey);
@@ -26,11 +25,10 @@ const Header = ({setPubKey}) => {
       // expirePass(publickey);
     }
   }, [publickey]);
-
+  
   const connectWallet = async () => {
     if (await checkConnection()) {
       getPublicKey(await retrievePublicKey());
-      setPubKey(publickey);
     }
   };
 

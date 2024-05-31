@@ -1,35 +1,34 @@
-import React, { useState } from "react";
-// import toast from "react-hot-toast";
+import { pubKeyData } from "App";
+import React, { useContext, useState } from "react";
+import { createPass } from "components/Soroban/Soroban";
 
 const CreatePass = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleCreatePass = async () => {
-    // const notification = toast.loading("Filing Complaint");
-    // try {
-    //     const data = await fileComplaint([title, description]);
-    //     toast.success(`Complaint Filed! Note Your ComplaintId:${nextId}`, {
-    //         id: notification,
-    //     });
-    //     console.info("contract call successs", data);
-    //     setTitle("");
-    //     setDescription("");
-    // } catch (err) {
-    //     toast.error("Whoops, something went wrong!", {
-    //         id: notification,
-    //     });
-    //     console.error("contract call failure", err);
-    // }
+  const pubKey = useContext(pubKeyData);
+
+  const handleCreatePass = () => {
+    createPass(pubKey, title, description);
   };
 
   return (
     <div className="md: mr-[50px] md:ml-[50px] bg-yellow-300 w-[98%] rounded-lg p-5">
       <p className="text-center">Create Pass:</p>
-      <div className="w-[100%]  flex flex-col gap-5 items-center justify-center">
+      <div className="w-[90%] m-auto flex flex-col gap-5 items-center justify-center">
         <div className="w-[75%] py-2 flex flex-col gap-3">
           <div className="md:flex items-center justify-between">
-            <p className="">Title: </p>
+            <p className="w-32">Address: </p>
+            <input
+              type="text"
+              className="md:w-[500px] w-[300px] p-2 rounded-md bg-gray-200 text-gray-500"
+              placeholder={pubKey}
+              value={pubKey}
+              readOnly
+            />
+          </div>
+          <div className="md:flex items-center justify-between">
+            <p className="w-32">Title: </p>
             <input
               type="text"
               className="md:w-[500px] w-[300px] p-2 rounded-md"
@@ -40,7 +39,7 @@ const CreatePass = () => {
             />
           </div>
           <div className="md:flex items-center justify-between">
-            <p className="complaint-text-normal">Description: </p>
+            <p className="w-32">Description: </p>
             <input
               type="text"
               className="md:w-[500px] w-[300px] p-2 rounded-md"
@@ -57,6 +56,11 @@ const CreatePass = () => {
         >
           Create Pass
         </button>
+      </div>
+      <div className="text-center text-wrap max-w-full pt-4">
+        <p className="text-red-500 text-xl">
+          Note :- If your Wallet doesn't popup? You might have a pending pass.
+        </p>
       </div>
     </div>
   );
