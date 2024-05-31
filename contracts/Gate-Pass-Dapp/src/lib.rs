@@ -49,9 +49,7 @@ pub struct GatePassContract;
 impl GatePassContract {
 
     // This function creates and retuns a new pass:
-    pub fn create_pass(env: Env, record_id: Address, title: String, descrip: String) -> Symbol {
-        // authenticating user.
-        record_id.require_auth();
+    pub fn create_pass(env: Env, record_id: Address, title: String, descrip: String) -> Address {
         
         // indirectly creating an instance of 'Record' struct.
         let mut records = Self::view_my_pass(env.clone(), record_id.clone());   
@@ -84,7 +82,7 @@ impl GatePassContract {
     
                 env.storage().instance().extend_ttl(5000, 5000);
                 
-                return symbol_short!("Created");
+                return record_id.clone();
         } else {
             panic!("You can't create a pass!");
         }
@@ -93,8 +91,6 @@ impl GatePassContract {
 
     // This function enable the admin to approve and updates the status of a newly registered pass.
     pub fn approve_pass (env: Env, record_id: Address) {
-        // authenticating user.
-        record_id.require_auth();
         
         let mut records = Self::view_my_pass(env.clone(), record_id.clone());   
         
@@ -123,8 +119,6 @@ impl GatePassContract {
 
     // This function gets triggered when the user wants to expire their pass:
     pub fn expire_pass (env: Env, record_id: Address) {
-        // authenticating user.
-        record_id.require_auth();
         
         let mut records = Self::view_my_pass(env.clone(), record_id.clone());   
 
