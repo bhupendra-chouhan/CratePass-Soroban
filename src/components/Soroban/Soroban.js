@@ -93,7 +93,7 @@ async function createPass(caller, title, descrip) {
   let values = [accountScVal, titleScVal, descripScVal];
 
   try {
-    const record_id = await contractInt(caller, "create_pass", values);
+    await contractInt(caller, "create_pass", values);
     
     console.log("!!Pass Created!!"); // Big Object
   } catch (error) {
