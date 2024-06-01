@@ -12,7 +12,7 @@ import { userSignTransaction } from "../Freighter";
 let rpcUrl = "https://soroban-testnet.stellar.org";
 
 let contractAddress =
-  "CC27C52P3LWXBL3332ROVUPVW5ZY676WVQNCOI5MU45F473SPMFRT24F";
+  "CBULKW2XFWMBGTCGUYIA3S2LNZBL6IUWJCP3W6PZHR4JRK24B26M6M2F";
 
 // coverting Account Address to ScVal form
 const accountToScVal = (account) => new Address(account).toScVal();
@@ -21,6 +21,10 @@ const accountToScVal = (account) => new Address(account).toScVal();
 const stringToScValString = (value) => {
   return nativeToScVal(value);
 };
+
+const numberToU64 = (value) => {
+  return nativeToScVal(value, { type: "u64" });
+}
 
 let params = {
   fee: BASE_FEE,
@@ -65,11 +69,10 @@ async function contractInt(caller, functName, values) {
     });
     if (sendTx.errorResult) {
       throw new Error("Unable to submit transaction");
-    }
+    }                                                                                                                                                                                                              
     if (sendTx.status === "PENDING") {
       let txResponse = await provider.getTransaction(sendTx.hash);
-
-      //   we will continously checking the transaction status until it gets successfull added to the blockchain ledger or it gets rejected
+//   we will continously checking the transaction status until it gets successfull added to the blockchain ledger or it gets rejected
       while (txResponse.status === "NOT_FOUND") {
         txResponse = await provider.getTransaction(sendTx.hash);
         await new Promise((resolve) => setTimeout(resolve, 100));
@@ -101,9 +104,9 @@ async function createPass(caller, title, descrip) {
   }
 }
 
-async function approvePass(caller) {
-  let accountScVal = accountToScVal(caller);
-  let values = accountScVal;
+async function approvePass(caller, unique_id) {
+  // let accountScVal = accountToScVal(caller);
+  let values = numberToU64(unique_id);
 
   try {
     await contractInt(caller, "approve_pass", values);
@@ -160,6 +163,7 @@ async function fetchMyPassStatus(caller) {
   try {
     accountScVal = accountToScVal(caller);
     result = await contractInt(caller, "view_my_pass", accountScVal);
+    console.log(result);
   } catch (error) {
     console.log("Unable to Your Pass Status!!");
   }
@@ -182,13 +186,17 @@ async function fetchMyPassStatus(caller) {
   // Pass Title:
   let titleVal = result._value[5]._attributes.val._value.toString();
 
+  // Pass Title:
+  let uniqueIDVal = Number(result._value[6]._attributes.val._value);
+
   console.log(
     approvalVal,
     descripVal,
     in_timeVal,
     isexpiredVal,
     out_timeVal,
-    titleVal
+    titleVal,
+    uniqueIDVal
   );
 
   let ansArr = [];
@@ -198,6 +206,7 @@ async function fetchMyPassStatus(caller) {
   ansArr.push(isexpiredVal);
   ansArr.push(out_timeVal);
   ansArr.push(titleVal);
+  ansArr.push(uniqueIDVal);
   return ansArr;
 }
 

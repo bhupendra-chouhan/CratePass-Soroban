@@ -24,25 +24,27 @@ const CreatePass = () => {
 
 
   return (
-    <div className="md: mr-[50px] md:ml-[50px] bg-yellow-300 w-[98%] rounded-lg p-5">
-      <p className="text-center">Create Pass:</p>
+    <div className="md:mr-[50px] md:ml-[50px] bg-yellow-300 sm:w-[98%] rounded-lg p-5">
+      <p className="bg-cyan-500 sm:text-2xl font-bold  p-2 rounded-md text-center flex justify-between gap-3 items-center font-bol">
+        Create Pass:
+      </p>
       <div className="w-[90%] m-auto flex flex-col gap-5 items-center justify-center">
-        <div className="w-[75%] py-2 flex flex-col gap-3">
+        <div className="sm:w-[70%] py-2 flex flex-col gap-3">
           <div className="md:flex items-center justify-between">
-            <p className="w-32">Address: </p>
+            <p className="w-32 text-xl mx-2">Address: </p>
             <input
               type="text"
-              className="md:w-[500px] w-[300px] p-2 rounded-md bg-gray-200 text-gray-500"
+              className="md:w-full p-2 rounded-md bg-gray-200 text-gray-500"
               placeholder={pubKey}
               value={pubKey}
               readOnly
             />
           </div>
           <div className="md:flex items-center justify-between">
-            <p className="w-32">Title: </p>
+            <p className="w-32 text-xl mx-2">Title: </p>
             <input
               type="text"
-              className="md:w-[500px] w-[300px] p-2 rounded-md"
+              className="md:w-full  p-2 rounded-md"
               placeholder="Enter Title Here"
               onChange={(e) => {
                 setTitle(e.target.value);
@@ -50,10 +52,10 @@ const CreatePass = () => {
             />
           </div>
           <div className="md:flex items-center justify-between">
-            <p className="w-32">Description: </p>
+            <p className="w-32 text-xl mx-2">Description: </p>
             <input
               type="text"
-              className="md:w-[500px] w-[300px] p-2 rounded-md"
+              className="md:w-full p-2 rounded-md"
               placeholder="Enter Description Here"
               onChange={(e) => {
                 setDescription(e.target.value);

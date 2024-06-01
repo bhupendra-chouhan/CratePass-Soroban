@@ -14,6 +14,7 @@ const CheckMyPassStatus = () => {
   };
 
   const status = {
+    uniqueID: passStatus[6] || 0,
     title: passStatus[5] || "Not_Found",
     descrip: passStatus[1] || "Not_Found",
     out_time: passStatus[4] || 0,
@@ -23,8 +24,8 @@ const CheckMyPassStatus = () => {
   };
 
   return (
-    <div className="flex flex-col bg-green-300 rounded-lg my-4 items-center border p-4 w-full">
-      <div className="text-2xl text-center flex gap-3 items-center">
+    <div className="flex flex-col font-semibold bg-green-300 rounded-lg my-4 items-center border p-4 w-full">
+      <div className="bg-emerald-400 w-full p-2 rounded-md sm:text-2xl font-bold text-center flex justify-between gap-3 items-center">
         Check Your Pass Status
         <button
           className="text-lg hover:bg-violet-500 bg-violet-400 rounded-md p-1 font-bold text-white"
@@ -33,7 +34,7 @@ const CheckMyPassStatus = () => {
           Refresh
         </button>
       </div>
-      <table className="w-full text-center">
+      <table className="w-full sm:text-2xl text-center">
         <thead className="border-b-2 border-blue-700">
           <tr>
             <th>Key</th>
@@ -41,6 +42,10 @@ const CheckMyPassStatus = () => {
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td className="w-[50%]">Unique ID</td>
+            <td className="w-[50%]">{status.uniqueID}</td>
+          </tr>
           <tr>
             <td className="w-[50%]">Titile</td>
             <td className="w-[50%]">{status.title}</td>

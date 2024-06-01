@@ -23,9 +23,9 @@ const CheckAllPassStatus = () => {
   };
 
   return (
-    <div className="md: mr-[50px] md:ml-[50px] bg-yellow-300 flex flex-col my-4 grow rounded-lg p-5">
-      <div className="text-center">
-        Check All Pass Status{" "}
+    <div className="flex flex-col bg-yellow-300 rounded-lg my-4 items-center border p-4 min-w-max">
+      <div className="bg-emerald-400 w-full p-2 rounded-md sm:text-2xl text-center flex gap-3 justify-between items-center font-bold">
+        Check All Pass Status
         <button
           className="text-lg hover:bg-violet-500 bg-violet-400 rounded-md p-1 font-bold text-white"
           onClick={handleRefresh}
@@ -33,7 +33,7 @@ const CheckAllPassStatus = () => {
           Refresh
         </button>
       </div>
-      <div className="text-center flex justify-center">
+      <div className="text-center flex justify-center sm:text-2xl font-semibold ">
         <table>
           <thead className="border-b-2 border-dashed border-blue-700">
             <tr>
