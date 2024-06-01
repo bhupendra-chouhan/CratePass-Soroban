@@ -20,13 +20,13 @@ const Header = ({setPubKey}) => {
       getConnected("Connected!");
       setPubKey(publickey);
       
-      // fetchAllPassStatus(publickey);
-      // fetchMyPassStatus(publickey);
-      // createPass(publickey, "Reaching to Office", "I'm going to my Office today.");
+      createPass(publickey, "Reaching to Office", "I'm going to my Office today.");
+      // fetchMyPassStatus(publickey, 1);
       // approvePass(publickey);
-      // approvePass(publickey, 2);
+      // approvePass(publickey, 1);
       // console.log(typeof publickey)
-      // expirePass(publickey);
+      // expirePass(publickey, 1);
+      fetchAllPassStatus(publickey);
     }
   }, [publickey]);
   

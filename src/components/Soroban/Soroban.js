@@ -12,7 +12,7 @@ import { userSignTransaction } from "../Freighter";
 let rpcUrl = "https://soroban-testnet.stellar.org";
 
 let contractAddress =
-  "CBULKW2XFWMBGTCGUYIA3S2LNZBL6IUWJCP3W6PZHR4JRK24B26M6M2F";
+  "CBPSRM3TVRYA6PT7ESIXC64QZDTKIQNSKBYJ4CED64CN2OITETB67X2P";
 
 // coverting Account Address to ScVal form
 const accountToScVal = (account) => new Address(account).toScVal();
@@ -24,7 +24,7 @@ const stringToScValString = (value) => {
 
 const numberToU64 = (value) => {
   return nativeToScVal(value, { type: "u64" });
-}
+};
 
 let params = {
   fee: BASE_FEE,
@@ -69,10 +69,10 @@ async function contractInt(caller, functName, values) {
     });
     if (sendTx.errorResult) {
       throw new Error("Unable to submit transaction");
-    }                                                                                                                                                                                                              
+    }
     if (sendTx.status === "PENDING") {
       let txResponse = await provider.getTransaction(sendTx.hash);
-//   we will continously checking the transaction status until it gets successfull added to the blockchain ledger or it gets rejected
+      //   we will continously checking the transaction status until it gets successfull added to the blockchain ledger or it gets rejected
       while (txResponse.status === "NOT_FOUND") {
         txResponse = await provider.getTransaction(sendTx.hash);
         await new Promise((resolve) => setTimeout(resolve, 100));
@@ -88,61 +88,66 @@ async function contractInt(caller, functName, values) {
   }
 }
 
+
 // function to interact with it's respective smart contract functions:
+
+// Working fine
 async function createPass(caller, title, descrip) {
-  let accountScVal = accountToScVal(caller);
   let titleScVal = stringToScValString(title);
   let descripScVal = stringToScValString(descrip);
-  let values = [accountScVal, titleScVal, descripScVal];
+  let values = [titleScVal, descripScVal];
 
   try {
-    await contractInt(caller, "create_pass", values);
-    
-    console.log("!!Pass Created!!"); // Big Object
+    const passId = await contractInt(caller, "create_pass", values);
+
+    console.log(`!!Pass ID - ${passId}, is Created!!`); // Big Object
   } catch (error) {
     console.log("Pass not created. Check if you already have a active pass");
   }
 }
 
-async function approvePass(caller, unique_id) {
+
+// Working fine 
+async function approvePass(caller, pass_id) {
   // let accountScVal = accountToScVal(caller);
-  let values = numberToU64(unique_id);
+  let values = numberToU64(pass_id);
 
   try {
     await contractInt(caller, "approve_pass", values);
-    console.log("!!Pass Arrpoved!!");
+    console.log(`!!Pass ID - ${pass_id}, is now Arrpoved!!`);
   } catch (error) {
     console.log("Pass can't be approved!!");
   }
 }
 
-async function expirePass(caller) {
-  let accountScVal = accountToScVal(caller);
-  let values = accountScVal;
+async function expirePass(caller, pass_id) {
+  let values = numberToU64(pass_id);
 
   try {
     await contractInt(caller, "expire_pass", values);
-    console.log("!!Pass expired!!");
+    console.log(`!!Pass ID - ${pass_id}, is now expired!!`);
   } catch (error) {
-    console.log("Pass can't be expired!!", error);
+    console.log("Pass can't be expired!!");
   }
 }
 
+
+// Working fine
 async function fetchAllPassStatus(caller) {
   try {
     let result = await contractInt(caller, "view_all_pass_status", null);
 
     // Approval Status:
-    let approvedVal = Number(result._value[0]._attributes.val._value);
+    let approvedVal = Number(result?._value[0]?._attributes?.val?._value);
 
     // Expired Status:
-    let expiredVal = Number(result._value[1]._attributes.val._value);
+    let expiredVal = Number(result?._value[1]?._attributes?.val?._value);
 
     // Pending Status:
-    let pendingVal = Number(result._value[2]._attributes.val._value);
+    let pendingVal = Number(result?._value[2]?._attributes?.val?._value);
 
     // Total Status:
-    let totalVal = Number(result._value[3]._attributes.val._value);
+    let totalVal = Number(result?._value[3]?._attributes?.val?._value);
 
     console.log(approvedVal, expiredVal, pendingVal, totalVal);
     let ansArr = [];
@@ -156,59 +161,74 @@ async function fetchAllPassStatus(caller) {
   }
 }
 
-async function fetchMyPassStatus(caller) {
-  let result;
-  let accountScVal;
+// Working fine
+async function fetchMyPassStatus(caller, pass_id) {
+  let values = numberToU64(pass_id);
+  let result1;
+  let result2;
 
   try {
-    accountScVal = accountToScVal(caller);
-    result = await contractInt(caller, "view_my_pass", accountScVal);
-    console.log(result);
+    result1 = await contractInt(caller, "view_my_pass", values);
+    // console.log("result-1 is has arived!", result1);
   } catch (error) {
-    console.log("Unable to Your Pass Status!!");
+    console.log("Unable to fetch Your Pass Status!!");
   }
-
-  // Approval Status:
-  let approvalVal = result._value[0]._attributes.val._value;
+  
+  try {
+    result2 = await contractInt(caller, "view_ac_pass_by_unique_id", values);
+    // console.log("result-2 is has arived!", result2);
+  } catch (error) {
+    console.log("Unable to fetch Your Pass Status!!");
+  }
+  
+  // Pass Created Time:
+  let createdTimeVal = Number(result1?._value[0]?._attributes?.val?._value);
+  console.log(createdTimeVal);
 
   // Pass Description:
-  let descripVal = result._value[1]._attributes.val._value.toString();
+  let descripVal = result1?._value[1]?._attributes?.val?._value?.toString();
+  console.log(descripVal);
 
-  // In-time:
-  let in_timeVal = Number(result._value[2]._attributes.val._value);
+  // In Time:
+  let inTimeVal = Number(result1?._value[2]?._attributes?.val?._value);
+  console.log(inTimeVal);
 
-  // Expiry Status:
-  let isexpiredVal = result._value[3]._attributes.val._value;
-
-  // Out-time:
-  let out_timeVal = Number(result._value[4]._attributes.val._value);
-
-  // Pass Title:
-  let titleVal = result._value[5]._attributes.val._value.toString();
+  // Is Expired:
+  let isExpiredVal = result1?._value[3]?._attributes?.val?._value;
+  console.log(isExpiredVal);
 
   // Pass Title:
-  let uniqueIDVal = Number(result._value[6]._attributes.val._value);
+  let titleVal = result1?._value[4]?._attributes?.val?._value?.toString();
+  console.log(titleVal);
 
-  console.log(
-    approvalVal,
-    descripVal,
-    in_timeVal,
-    isexpiredVal,
-    out_timeVal,
-    titleVal,
-    uniqueIDVal
-  );
+  // Pass ID:
+  let passIdVal = Number(result1?._value[5]?._attributes?.val?._value);
+  console.log(passIdVal);
+
+  // Approval status:
+  let approvalStatusVal = result2?._value[1]?._attributes?.val?._value;
+  console.log(approvalStatusVal);
+
+  // Pass ID:
+  let outTimeVal = Number(result2?._value[2]?._attributes?.val?._value);
+  console.log(outTimeVal);
+
 
   let ansArr = [];
-  ansArr.push(approvalVal);
-  ansArr.push(descripVal);
-  ansArr.push(in_timeVal);
-  ansArr.push(isexpiredVal);
-  ansArr.push(out_timeVal);
-  ansArr.push(titleVal);
-  ansArr.push(uniqueIDVal);
+  // ansArr.push(createdTimeVal);
+  // ansArr.push(descripVal);
+  // ansArr.push(inTimeVal);
+  // ansArr.push(isExpiredVal);
+  // ansArr.push(titleVal);
+  // ansArr.push(passIdVal);
+  // ansArr.push(approvalStatusVal);
+  // ansArr.push(outTimeVal);
+
   return ansArr;
 }
+
+
+
 
 export {
   createPass,
