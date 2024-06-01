@@ -18,6 +18,12 @@ pub struct ApprovalStatus {
 const ALL_PASS : Symbol = symbol_short!("ALL_PASS");
 
 
+// Mapping Pass to, its Unipass-Id
+#[contracttype] 
+pub enum Unipassbook { 
+    Pass(u64)
+}
+
 // Mapping Pass to, its Pass-Id
 #[contracttype] 
 pub enum Passbook { 
@@ -33,6 +39,7 @@ const COUNT_PASS: Symbol = symbol_short!("C_PASS");
 #[contracttype]
 #[derive(Clone)] 
 pub struct Pass {
+    pub unique_id: u64,
     pub title: String,
     pub descrip: String,
     pub out_time: u64, 
@@ -49,7 +56,7 @@ pub struct GatePassContract;
 impl GatePassContract {
 
     // This function creates and retuns a new pass:
-    pub fn create_pass(env: Env, record_id: Address, title: String, descrip: String) -> Address {
+    pub fn create_pass(env: Env, record_id: Address, title: String, descrip: String) {
         
         // indirectly creating an instance of 'Record' struct.
         let mut records = Self::view_my_pass(env.clone(), record_id.clone());   
@@ -72,9 +79,14 @@ impl GatePassContract {
             
                 all_pass.pending += 1;
                 all_pass.total = all_pass.total + 1;
+
+                records.unique_id = all_pass.total.clone();
                 
                 // storing the newly created pass
                 env.storage().instance().set(&Passbook::Pass(record_id.clone()), &records);
+
+                env.storage().instance().set(&Unipassbook::Pass(records.unique_id.clone()), &records);
+
                 // updating the all_pass data
                 env.storage().instance().set(&ALL_PASS, &all_pass);
                 // updating the count_pass
@@ -82,24 +94,51 @@ impl GatePassContract {
     
                 env.storage().instance().extend_ttl(5000, 5000);
                 
-                return record_id.clone();
         } else {
             panic!("You can't create a pass!");
         }
     }
     
 
-    // This function enable the admin to approve and updates the status of a newly registered pass.
-    pub fn approve_pass (env: Env, record_id: Address) {
+    // // This function enable the admin to approve and updates the status of a newly registered pass.
+    // pub fn approve_pass (env: Env, record_id: Address) {
         
-        let mut records = Self::view_my_pass(env.clone(), record_id.clone());   
+    //     let mut records = Self::view_my_pass(env.clone(), record_id.clone());   
+        
+    //     // If Pass is created but is not approved, then we'll set the approval-status of the pass to true
+    //     if records.approval == false && records.out_time > 0 {
+    //         records.approval = true;
+
+    //         // Updating the Pass data
+    //         env.storage().instance().set(&Passbook::Pass(record_id.clone()), &records);
+
+    //         let mut all_pass = Self::view_all_pass_status(env.clone()); 
+    //         all_pass.approved += 1; // increasing the approved pass count
+    //         all_pass.pending -= 1;  // decreasing the pending pass count
+
+    //         // Updating the Pass data
+    //         env.storage().instance().set(&ALL_PASS, &all_pass);
+            
+    //         env.storage().instance().extend_ttl(5000, 5000);
+
+    //         log!(&env, "Your pass is now Approved");
+    //     } else {
+    //         log!(&env, "Cannot Approved!!");
+    //         panic!("Cannot Approved!!")
+    //     } 
+    // }
+
+    // This function enable the admin to approve and updates the status of a newly registered pass.
+    pub fn approve_pass (env: Env, unique_id: u64) {
+        
+        let mut records = Self::view_my_pass_by_unique_id(env.clone(), unique_id.clone());   
         
         // If Pass is created but is not approved, then we'll set the approval-status of the pass to true
         if records.approval == false && records.out_time > 0 {
             records.approval = true;
 
             // Updating the Pass data
-            env.storage().instance().set(&Passbook::Pass(record_id.clone()), &records);
+            env.storage().instance().set(&Unipassbook::Pass(unique_id.clone()), &records);
 
             let mut all_pass = Self::view_all_pass_status(env.clone()); 
             all_pass.approved += 1; // increasing the approved pass count
@@ -174,6 +213,25 @@ impl GatePassContract {
         // getting data fron the blockchain for the 'key'
         env.storage().instance().get(&key).unwrap_or(Pass {
             // If data no found, then will return this Pass object with default values: 
+            unique_id: 0,
+            title: String::from_str(&env, "Not_Found"),
+            descrip: String::from_str(&env, "Not_Found"),
+            out_time: 0,
+            in_time: 0,
+            approval: false,
+            isexpired: true, 
+        })
+    }
+
+        // This function gets triggered when the user wants to get the status data of their pass:
+    pub fn view_my_pass_by_unique_id(env: Env, unique_id: u64) -> Pass {
+        
+        let key = Unipassbook::Pass(unique_id.clone()); 
+        
+        // getting data fron the blockchain for the 'key'
+        env.storage().instance().get(&key).unwrap_or(Pass {
+            // If data no found, then will return this Pass object with default values: 
+            unique_id: 0,
             title: String::from_str(&env, "Not_Found"),
             descrip: String::from_str(&env, "Not_Found"),
             out_time: 0,
