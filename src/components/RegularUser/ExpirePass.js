@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import { expirePass } from "components/Soroban/Soroban";
-import { pubKeyData } from "App";
+import { passIdContext, pubKeyData } from "App";
 
 const ExpirePass = () => {
   const pubKey = useContext(pubKeyData);
+  const { passId } = useContext(passIdContext);
 
   const handleExpire = async () => {
-    await expirePass(pubKey);
+    await expirePass(pubKey, passId);
   };
   return (
     <div>

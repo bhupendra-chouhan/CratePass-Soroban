@@ -51,7 +51,7 @@ const CheckMyPassStatus = () => {
           </tr>
           <tr>
             <td>Pass Created Time</td>
-            <td>{status.out_time}</td>
+            <td>{status.created_time}</td>
           </tr>
           <tr>
             <td className="w-[50%]">Titile</td>
@@ -75,7 +75,7 @@ const CheckMyPassStatus = () => {
           </tr>
           <tr>
             <td>Is Expired</td>
-            <td>{status.isexpired ? "Not Expired" : "Expired"}</td>
+            <td>{status.isexpired ? "Expired" : "Not Expired"}</td>
           </tr>
         </tbody>
       </table>
