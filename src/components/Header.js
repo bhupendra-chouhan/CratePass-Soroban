@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { checkConnection, retrievePublicKey } from "./Freighter";
-import {
-  createPass,
-  approvePass,
-  expirePass,
-  fetchAllPassStatus,
-  fetchMyPassStatus,
-} from "./Soroban/Soroban";
+import StellarLogo from "../assets/stellarlogo.png"
 
 const Header = ({setPubKey}) => {
   const [connect, getConnected] = useState("Connect");
@@ -19,14 +13,6 @@ const Header = ({setPubKey}) => {
     if (publickey !== "") {
       getConnected("Connected!");
       setPubKey(publickey);
-      
-      // createPass(publickey, "Reaching to Office", "I'm going to my Office today.");
-      // fetchMyPassStatus(publickey, 1);
-      // approvePass(publickey);
-      // approvePass(publickey, 1);
-      // console.log(typeof publickey)
-      // expirePass(publickey, 1);
-      // fetchAllPassStatus(publickey);
     }
   }, [publickey]);
   
@@ -37,12 +23,16 @@ const Header = ({setPubKey}) => {
   };
 
   return (
-    <div className="bg-slate-300 flex md:flex-row shadow-slate-400 shadow-lg justify-between items-center px-10 py-4">
-      <div className=" text-4xl font-semibold text-blue-800">CratePass dApp</div>
+    <div className="bg-slate-400 flex md:flex-row shadow-slate-500 shadow-lg justify-between items-center px-10 py-4">
+      <div className="text-2xl sm:text-
+      3xl lg:text-3xl font-semibold text-black flex items-center gap-5">
+        <img src={StellarLogo} alt="CratePass X Stellar" className="w-11"/>
+        <span className="text">CratePass dApp</span>
+      </div>
 
       <div
         onClick={() => handleOpenMenu()}
-        className="text-5xl absolute top-4 right-3 md:hidden cursor-pointer"
+        className="text-4xl absolute top-4 right-3 md:hidden cursor-pointer"
       >
         <ion-icon name={open ? "close" : "menu"}></ion-icon>
       </div>
@@ -67,7 +57,7 @@ const Header = ({setPubKey}) => {
           </li>
           <li>
             <button
-              className="text-xl w-52 hover:bg-blue-500 bg-blue-400 rounded-md p-4 font-bold text-white"
+              className="text-xl w-52 hover:bg-blue-500 bg-blue-400 rounded-md p-4 font-bold text-white border-4"
               onClick={connectWallet}
             >
               {connect}

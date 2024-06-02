@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Admin from "./components/Admin/Admin";
 import RegularUser from "./components/RegularUser/RegularUser";
 import { createContext, useState } from "react";
-import { ADMIN_KEY } from "constants/contants";
+import { ADMIN_KEY } from "./constants/constants";
 
 const pubKeyData = createContext();
 const passIdContext = createContext();
