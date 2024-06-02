@@ -11,7 +11,7 @@ const ApprovePass = () => {
   return (
     <div className="flex flex-col bg-yellow-300 rounded-lg my-4 items-center border p-4 w-full">
       <div className="bg-cyan-500 w-full p-2 rounded-md sm:text-2xl font-bold text-center flex justify-between gap-3 items-center font-bol">
-        <span>Status of All rgistered Pass</span>
+        <span>Update status of registered Pass</span>
         <button
           className="text-lg hover:bg-violet-500 bg-orange-700 rounded-md p-1 border-black font-bold text-white"
           onClick={handleRefresh}

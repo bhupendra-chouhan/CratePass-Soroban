@@ -28,7 +28,7 @@ const CheckMyPassStatus = () => {
       <div className="bg-emerald-400 w-full p-2 rounded-md sm:text-2xl font-bold text-center flex justify-between gap-3 items-center">
         Check Your Pass Status
         <button
-          className="text-lg hover:bg-violet-500 bg-violet-400 rounded-md p-1 font-bold text-white"
+          className="text-lg hover:bg-violet-500 bg-orange-700 rounded-md p-1 font-bold text-white"
           onClick={handleRefresh}
         >
           Refresh

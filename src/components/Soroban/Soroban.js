@@ -136,7 +136,7 @@ async function expirePass(caller, pass_id) {
 
 
 // Working fine
-async function fetchAllPassStatus(caller) {
+async function  fetchAllPassStatus(caller) {
   try {
     let result = await contractInt(caller, "view_all_pass_status", null);
 

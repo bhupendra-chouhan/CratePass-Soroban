@@ -11,10 +11,10 @@ const ExpirePass = () => {
   return (
     <div>
       <button
-        className="text-xl w-52 hover:bg-gray-500 bg-gray-400 rounded-md p-2 font-bold text-white"
+        className="text-xl w-52 hover:bg-gray-700 bg-gray-500 rounded-md p-2 font-bold text-white"
         onClick={handleExpire}
       >
-        Expire Pass
+        Expire Your Pass
       </button>
     </div>
   );
