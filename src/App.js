@@ -6,25 +6,25 @@ import { createContext, useState } from "react";
 import { ADMIN_KEY } from "constants/contants";
 
 const pubKeyData = createContext();
-const dynamicAddresslist = createContext();
+const passIdContext = createContext();
 
 function App() {
   const [pubkey, _setPubKey] = useState("");
-  const [dynamicAddress, _setDynamicAddress] = useState([]);
+  const [passId, _setPassId] = useState();
 
   return (
     <div className="App">
       <pubKeyData.Provider value={pubkey}>
         <Header setPubKey={_setPubKey} />
 
-        <dynamicAddresslist.Provider value={{dynamicAddress, _setDynamicAddress}}>
-          <RegularUser />
-          {pubkey.toString() === ADMIN_KEY && <Admin />}
-        </dynamicAddresslist.Provider>
+          <passIdContext.Provider value={{passId, _setPassId}}>
+            <RegularUser />
+            {pubkey.toString() === ADMIN_KEY && <Admin />}
+          </passIdContext.Provider>
       </pubKeyData.Provider>
     </div>
   );
 }
 
 export default App;
-export { pubKeyData, dynamicAddresslist };
+export { pubKeyData, passIdContext };

@@ -99,8 +99,11 @@ async function createPass(caller, title, descrip) {
 
   try {
     const passId = await contractInt(caller, "create_pass", values);
-
-    console.log(`!!Pass ID - ${passId}, is Created!!`); // Big Object
+    let resolvedPassId = Number(passId?._value?._value);
+    console.log(resolvedPassId);
+    // passId.then(res => resolvedPassId = res)
+    // console.log(`!!Pass ID - ${resolvedPassId}, is Created!!`);
+    return resolvedPassId;
   } catch (error) {
     console.log("Pass not created. Check if you already have a active pass");
   }
@@ -215,14 +218,14 @@ async function fetchMyPassStatus(caller, pass_id) {
 
 
   let ansArr = [];
-  // ansArr.push(createdTimeVal);
-  // ansArr.push(descripVal);
-  // ansArr.push(inTimeVal);
-  // ansArr.push(isExpiredVal);
-  // ansArr.push(titleVal);
-  // ansArr.push(passIdVal);
-  // ansArr.push(approvalStatusVal);
-  // ansArr.push(outTimeVal);
+  ansArr.push(createdTimeVal);
+  ansArr.push(descripVal);
+  ansArr.push(inTimeVal);
+  ansArr.push(isExpiredVal);
+  ansArr.push(titleVal);
+  ansArr.push(passIdVal);
+  ansArr.push(approvalStatusVal);
+  ansArr.push(outTimeVal);
 
   return ansArr;
 }
