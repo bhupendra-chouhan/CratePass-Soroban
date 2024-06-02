@@ -22,8 +22,8 @@ const CheckMyPassStatus = () => {
     descrip: passStatus[1] || "Not_Found",
     out_time: passStatus[7] || 0,
     in_time: passStatus[2] || 0,
-    approval: passStatus[6] || "Not_Found",
-    isexpired: passStatus[3] || "Not_Found",
+    approval: passStatus[6] || false,
+    isexpired: passStatus[3] || false,
   };
 
   return (
