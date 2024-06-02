@@ -12,25 +12,37 @@ The CratePass dApp is a responsive, blockchain-based application deployed on the
 
 ---
 
-# Project Visuals
+## Project Visuals (All Screen-responsive, UI-Screenshots):
 
-1. Interacting with our CratePassContract on Okashi.dev.
-   ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/621c17c4-28b7-432f-9e39-4933fa3e6e32)
-2. Creating a new pass.
-   ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/8b865619-478d-4308-af07-31f1a9c607073.)
-3. Checking the pass status when it's created v/s after it's expired.
-<div style="display: flex;">
-  <img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/4b010c4f-a72f-44f2-87bc-109276810d0f" style="margin: 0 auto; display: flex;" alt="Ga" width="45%"/> 
-  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;
-  <img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/5f6d4f13-86ee-4506-8f0b-d4df615c5b71" style="margin: 0 auto; display: flex;" alt="Ga" width="45%"/></div>
+### Life Cycle of a Pass:
+   - Creating Pass:
+     ![Creating Pass](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/c110b525-f765-4f82-982b-c97821167a20)
 
-## UI-Screenshots (Smart-contract Integeration is Underdevelopment. Complete Version will be releasing soon..)
+   - Checking Pass Status (Regular User):
+     ![Checking Pass Status](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/8038055d-ae3f-412b-b4ff-6213f0d703f4)
 
-- Regular User View:
-  ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/02d6e98b-6038-4c3c-a07f-1a364ec32f3d)
+   - Admin checking the count of all types of passes and also approving the requests of pending passes by Regular user:
+     ![Admin Checking and Approving passes](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/f39f2c87-bbcf-4773-a6f7-a8638992595b)
 
-- Admin View:
-  ![image](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/e0b5bac5-5d32-4b29-aafb-42e507750ed0)
+   - Regular User expiring their approved pass:
+     ![Screenshot from 2024-06-02 14-46-23](https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/9de10af7-0ffa-475f-8932-e1209fe6a895)
+
+### Tablet View:
+   <div style="display: flex;">
+      Regular User V/s Admin View:
+         <br/>
+         <img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/186d946a-fba1-4960-a03b-2aa1182a897b" style="margin: 0 auto;" alt="Ga" width="400"/>
+         <img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/69104cc9-a640-479d-b58d-34541051f3be" style="margin: 0 auto;" alt="Ga" width="400"/>
+   </div>
+ 
+ ### Mobile View:
+
+   <div style="display: flex;">
+      Regular User V/s Admin View:
+         <br/>
+         <img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/ef0f2b38-6e21-4c44-a8be-d59487a49e5e" style="margin: 0 auto;" alt="Ga" width="300"/>
+         <img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/466897e2-fb47-4a9a-a964-85720ed13558" style="margin: 0 auto;" alt="Ga" width="300"/>
+   </div>
 
 ---
 
