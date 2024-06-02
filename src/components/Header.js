@@ -26,7 +26,7 @@ const Header = ({setPubKey}) => {
       // approvePass(publickey, 1);
       // console.log(typeof publickey)
       // expirePass(publickey, 1);
-      fetchAllPassStatus(publickey);
+      // fetchAllPassStatus(publickey);
     }
   }, [publickey]);
   

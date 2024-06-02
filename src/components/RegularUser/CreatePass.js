@@ -20,7 +20,7 @@ const CreatePass = () => {
   // Storing list of newly created pass_ids/account addresss to local storage in string format:
   useEffect(() => {
     localStorage.setItem(passId, "false"); // setting every passId's approval status to 'false' and storing it inside the local storage.
-    if (passId === "undefined") localStorage.removeItem(passId);
+    if (passId === undefined) localStorage.removeItem(passId);
   }, [passId]);
 
 

@@ -1,25 +1,28 @@
 import React, { useContext, useState } from "react";
 import { fetchMyPassStatus } from "components/Soroban/Soroban";
-import { pubKeyData } from "App";
+import { passIdContext, pubKeyData } from "App";
 
 const CheckMyPassStatus = () => {
   const [passStatus, setPassStatus] = useState({});
 
   const pubKey = useContext(pubKeyData);
+  const {passId} = useContext(passIdContext);
+
 
   const handleRefresh = async () => {
-    await fetchMyPassStatus(pubKey).then((values) => {
-      setPassStatus(values);
-    });
+    await fetchMyPassStatus(pubKey, passId).then(
+      (values) => setPassStatus(values)
+    );
   };
 
   const status = {
-    uniqueID: passStatus[6] || 0,
-    title: passStatus[5] || "Not_Found",
+    uniqueID: passStatus[5] || 0,
+    created_time: passStatus[0] || 0,
+    title: passStatus[4] || "Not_Found",
     descrip: passStatus[1] || "Not_Found",
-    out_time: passStatus[4] || 0,
+    out_time: passStatus[7] || 0,
     in_time: passStatus[2] || 0,
-    approval: passStatus[0] || "Not_Found",
+    approval: passStatus[6] || "Not_Found",
     isexpired: passStatus[3] || "Not_Found",
   };
 
@@ -47,6 +50,10 @@ const CheckMyPassStatus = () => {
             <td className="w-[50%]">{status.uniqueID}</td>
           </tr>
           <tr>
+            <td>Pass Created Time</td>
+            <td>{status.out_time}</td>
+          </tr>
+          <tr>
             <td className="w-[50%]">Titile</td>
             <td className="w-[50%]">{status.title}</td>
           </tr>
@@ -60,7 +67,7 @@ const CheckMyPassStatus = () => {
           </tr>
           <tr>
             <td>Is Approval</td>
-            <td>{status.approval ? "Not Approved" : "Approved"}</td>
+            <td>{status.approval ? "Approved" : "Not Approved"}</td>
           </tr>
           <tr>
             <td>In Time</td>
