@@ -5,24 +5,42 @@ import { createPass } from "components/Soroban/Soroban";
 const CreatePass = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-    
+
   const pubKey = useContext(pubKeyData);
-  const {passId, _setPassId} = useContext(passIdContext);
+  const { passId, _setPassId } = useContext(passIdContext);
 
   const handleCreatePass = async () => {
-    const tempPassId = await createPass(pubKey, title, description).then(value => value);
+    const tempPassId = await createPass(pubKey, title, description).then(
+      (value) => value
+    );
     console.log("templPassId: ", tempPassId);
     _setPassId(tempPassId);
     console.log("passId: ", passId);
   };
 
-
   // Storing list of newly created pass_ids/account addresss to local storage in string format:
   useEffect(() => {
-    localStorage.setItem(passId, "false"); // setting every passId's approval status to 'false' and storing it inside the local storage.
-    if (passId === undefined) localStorage.removeItem(passId);
+    setLocalStorageKey(passId);
   }, [passId]);
 
+  // setting every passId's approval status to 'false' and storing it inside the local storage.
+  function setLocalStorageKey(key) {
+    // Check if the key is a positive number and not undefined or null
+    if (
+      typeof key === "number" &&
+      key > 0 &&
+      key !== null &&
+      key !== undefined
+    ) {
+      // Convert the key to a string to use it in local storage
+      const keyString = key.toString();
+      // Set the default value to false
+      localStorage.setItem(keyString, JSON.stringify(false));
+      console.log(`Key "${keyString}" added with default value false.`);
+    } else {
+      console.error("Invalid key. Please provide a positive number.");
+    }
+  }
 
   return (
     <div className="md:mr-[50px] md:ml-[50px] bg-yellow-300 sm:w-[98%] rounded-lg p-5">
