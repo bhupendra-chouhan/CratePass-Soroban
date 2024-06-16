@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/efe808d0-a4d2-46a1-a86e-feff8824af54" style="margin: 0 auto;" alt="Ga" width="200"/>
+<img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/49400555-4da3-4448-9ee0-6b5cae39c8db" style="margin: 0 auto;" alt="Ga" width="200"/>
 </p>
 
 # CratePass (Blockchian Based Gate-Pass Dapp)
