@@ -1,10 +1,12 @@
 <p align="center">
-<img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/3312e99f-35f3-42e4-99f9-c1336472ce60" style="margin: 0 auto;" alt="Ga" width="200"/>
+<img src="https://github.com/Bhupendrachouhan19/Soroban-Internship-Bootcamp-Final-Project/assets/78025043/efe808d0-a4d2-46a1-a86e-feff8824af54" style="margin: 0 auto;" alt="Ga" width="200"/>
 </p>
 
 # CratePass (Blockchian Based Gate-Pass Dapp)
 
 The CratePass dApp is a responsive, blockchain-based application deployed on the Stellar Blockchain, leveraging the security and transparency of decentralized technology. This application facilitates the efficient management of gate passes through a robust and tamper-proof system. The smart contract underpinning the CratePass dApp is written in Rust, utilizing SorobonSDK for seamless integration with the Stellar network. Users can register and manage their gate passes securely, while administrators have the authority to approve or deny these passes, ensuring a controlled and trustworthy access management solution. This innovative approach significantly enhances security, reduces administrative overhead, and provides real-time verification of gate pass statuses.
+
+#### [▶️ Demo Video](https://drive.google.com/file/d/1LXGFo1Um5DeSQZrfu7iyAl2ZQUwZ5RlS/view?usp=sharing)
 
 # How this dapp got its name?
 
